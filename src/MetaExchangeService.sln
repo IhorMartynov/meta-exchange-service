@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{AED91A10-19C7-442F-A77C-231959508BDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0024B706-BB22-42D5-8B35-EE0EB89D3CDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FB139E61-D3E9-4C22-B31D-4370DC5D1D73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaExchangeService.WebApi", "UI\MetaExchangeService.WebApi\MetaExchangeService.WebApi.csproj", "{2FAF96A7-E658-48F2-AFD8-920C96476362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Console", "UI\MetaExchangeService.Console\MetaExchangeService.Console.csproj", "{0D757E04-AF97-4B18-90EE-E302AF116D44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C15ACC53-75BE-415A-A05E-0FE9A1FCA576}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C001E17D-961E-4C69-BFC0-296023D364BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Domain", "Domain\MetaExchangeService.Domain\MetaExchangeService.Domain.csproj", "{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Application", "Application\MetaExchangeService.Application\MetaExchangeService.Application.csproj", "{2E2C20E3-B7B6-4566-BFD2-52A199140FC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Repositories", "Infrastructure\MetaExchangeService.Repositories\MetaExchangeService.Repositories.csproj", "{0D3B0EAE-709A-4183-A66D-1864517D4217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Repositories.Contracts", "Infrastructure\MetaExchangeService.Repositories.Contracts\MetaExchangeService.Repositories.Contracts.csproj", "{AAAF11D0-AFB6-4905-88FF-592F408C8648}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{11E9743A-7283-45E0-90F3-368D1F46CD31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FAF96A7-E658-48F2-AFD8-920C96476362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FAF96A7-E658-48F2-AFD8-920C96476362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FAF96A7-E658-48F2-AFD8-920C96476362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FAF96A7-E658-48F2-AFD8-920C96476362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D757E04-AF97-4B18-90EE-E302AF116D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D757E04-AF97-4B18-90EE-E302AF116D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D757E04-AF97-4B18-90EE-E302AF116D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D757E04-AF97-4B18-90EE-E302AF116D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D3B0EAE-709A-4183-A66D-1864517D4217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3B0EAE-709A-4183-A66D-1864517D4217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3B0EAE-709A-4183-A66D-1864517D4217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D3B0EAE-709A-4183-A66D-1864517D4217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAAF11D0-AFB6-4905-88FF-592F408C8648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAF11D0-AFB6-4905-88FF-592F408C8648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAF11D0-AFB6-4905-88FF-592F408C8648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAF11D0-AFB6-4905-88FF-592F408C8648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2FAF96A7-E658-48F2-AFD8-920C96476362} = {AED91A10-19C7-442F-A77C-231959508BDA}
+		{0D757E04-AF97-4B18-90EE-E302AF116D44} = {AED91A10-19C7-442F-A77C-231959508BDA}
+		{7B8EFF91-E2F2-4697-936D-8BF1D2992BD3} = {0024B706-BB22-42D5-8B35-EE0EB89D3CDE}
+		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6} = {C15ACC53-75BE-415A-A05E-0FE9A1FCA576}
+		{0D3B0EAE-709A-4183-A66D-1864517D4217} = {C001E17D-961E-4C69-BFC0-296023D364BE}
+		{AAAF11D0-AFB6-4905-88FF-592F408C8648} = {C001E17D-961E-4C69-BFC0-296023D364BE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11F99CC2-3C55-42AD-B2D5-5F2971E18AC4}
+	EndGlobalSection
+EndGlobal
