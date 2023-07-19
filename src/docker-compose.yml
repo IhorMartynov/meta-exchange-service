@@ -10,7 +10,8 @@ services:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: sql_server2022
     ports:
-      - "1434:1434" 
+      - "60666:1433" 
     environment:
       - ACCEPT_EULA=y
       - SA_PASSWORD=Qwerty@123
+      - MSSQL_AGENT_ENABLED=true

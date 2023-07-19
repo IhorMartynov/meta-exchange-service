@@ -17,4 +17,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\MetaExchangeService.Application\MetaExchangeService.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\MetaExchangeService.Domain\MetaExchangeService.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MetaExchangeService.Repositories\MetaExchangeService.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
