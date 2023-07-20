@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services
-    .AddRepositories(builder.Configuration.GetConnectionString("ExchangeDb"))
+    .AddRepositories(builder.Configuration.GetConnectionString("ExchangeDb")!)
     .AddApplicationServices();
 
 var app = builder.Build();
