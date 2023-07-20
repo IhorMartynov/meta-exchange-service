@@ -24,6 +24,26 @@ namespace MetaExchangeService.Repositories.Contracts.Repositories
         Task<IEnumerable<Order>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Get an ASK orders page sorted by price ascending.
+        /// </summary>
+        /// <param name="page">Page number.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <param name="cancellationToken"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <returns></returns>
+        Task<IEnumerable<Order>> GetAskOrdersSortedByPriceAscendingAsync(int page, int pageSize, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get an BID orders page sorted by price descending.
+        /// </summary>
+        /// <param name="page">Page number.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <param name="cancellationToken"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <returns></returns>
+        Task<IEnumerable<Order>> GetBidOrdersSortedByPriceDescendingAsync(int page, int pageSize, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Create an order.
         /// </summary>
         /// <param name="exchangeId">Exchange identifier.</param>

@@ -13,14 +13,17 @@ namespace MetaExchangeService.WebApi.Controllers;
 public sealed class OrdersController : ControllerBase
 {
     private readonly IOrdersService _ordersService;
+    private readonly IExecutionPlanService _executionPlanService;
 
     /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="ordersService"></param>
-    public OrdersController(IOrdersService ordersService)
+    /// <param name="executionPlanService"></param>
+    public OrdersController(IOrdersService ordersService, IExecutionPlanService executionPlanService)
     {
         _ordersService = ordersService;
+        _executionPlanService = executionPlanService;
     }
 
     /// <summary>
@@ -43,6 +46,7 @@ public sealed class OrdersController : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
     public Task<IEnumerable<Order>> GetAll([FromQuery, Required] int page = 1,
         [FromQuery, Required] int pageSize = 10,
         CancellationToken cancellationToken = default) =>
@@ -97,4 +101,30 @@ public sealed class OrdersController : ControllerBase
     [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
     public Task DeleteOrder([FromRoute] long id, CancellationToken cancellationToken) =>
         _ordersService.DeleteAsync(id, cancellationToken);
+
+    /// <summary>
+    /// Get buy execution plan.
+    /// </summary>
+    /// <param name="amount">Amount of BTC to buy.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("buy-execution-plan")]
+    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status201Created)]
+    public Task<IEnumerable<ExecutionPlanItem>> GetBestBuyExecutionPlan(
+        [FromQuery, Required] decimal amount,
+        CancellationToken cancellationToken) =>
+        _executionPlanService.GetBestBuyingPlanAsync(amount, cancellationToken);
+
+    /// <summary>
+    /// Get sell execution plan.
+    /// </summary>
+    /// <param name="amount">Amount of BTC to sell.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("sell-execution-plan")]
+    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status201Created)]
+    public Task<IEnumerable<ExecutionPlanItem>> GetBestSellExecutionPlan(
+        [FromQuery, Required] decimal amount,
+        CancellationToken cancellationToken) =>
+        _executionPlanService.GetBestSellingPlanAsync(amount, cancellationToken);
 }

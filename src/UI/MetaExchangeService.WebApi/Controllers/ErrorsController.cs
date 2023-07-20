@@ -38,6 +38,7 @@ public sealed class ErrorsController : ControllerBase
 
         return error switch
         {
+            ArgumentOutOfRangeException argumentOutOfRangeException => BadRequest(argumentOutOfRangeException.Message),
             EntityNotFoundException notFoundException => NotFound(notFoundException.Message),
             _ => Problem(title: error?.Message)
         };

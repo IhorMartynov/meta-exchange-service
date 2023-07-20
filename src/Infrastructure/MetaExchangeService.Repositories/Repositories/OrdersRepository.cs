@@ -28,11 +28,45 @@ internal sealed class OrdersRepository : IOrdersRepository
     /// <inheritdoc />
     public async Task<IEnumerable<Order>> GetAllAsync(int page, int pageSize, CancellationToken cancellationToken)
     {
-        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page), "Page number cannot be less than 1.");
-        if (pageSize <= 0) throw new ArgumentOutOfRangeException(nameof(pageSize), "Page size cannot be less than 1.");
+        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page), page, "Page number cannot be less than 1.");
+        if (pageSize <= 0) throw new ArgumentOutOfRangeException(nameof(pageSize), pageSize, "Page size cannot be less than 1.");
 
         var entities = await _context.Orders
             .Include(x => x.Exchange)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToArrayAsync(cancellationToken);
+
+        return entities.Select(x => x.Adapt<Order>());
+    }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<Order>> GetAskOrdersSortedByPriceAscendingAsync(int page, int pageSize, CancellationToken cancellationToken)
+    {
+        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page), page, "Page number cannot be less than 1.");
+        if (pageSize <= 0) throw new ArgumentOutOfRangeException(nameof(pageSize), pageSize, "Page size cannot be less than 1.");
+
+        var entities = await _context.Orders
+            .Include(x => x.Exchange)
+            .Where(x => x.Type ==  OrderType.Ask)
+            .OrderBy(x => x.Price)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToArrayAsync(cancellationToken);
+
+        return entities.Select(x => x.Adapt<Order>());
+    }
+
+    /// <inheritdoc />
+    public async Task<IEnumerable<Order>> GetBidOrdersSortedByPriceDescendingAsync(int page, int pageSize, CancellationToken cancellationToken)
+    {
+        if (page <= 0) throw new ArgumentOutOfRangeException(nameof(page), page, "Page number cannot be less than 1.");
+        if (pageSize <= 0) throw new ArgumentOutOfRangeException(nameof(pageSize), pageSize, "Page size cannot be less than 1.");
+
+        var entities = await _context.Orders
+            .Include(x => x.Exchange)
+            .Where(x => x.Type == OrderType.Bid)
+            .OrderByDescending(x => x.Price)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToArrayAsync(cancellationToken);
