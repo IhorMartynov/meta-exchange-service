@@ -43,4 +43,52 @@ public sealed class AccountsController : ControllerBase
     [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
     public Task<IEnumerable<Account>> GetAll(CancellationToken cancellationToken) =>
         _accountsService.GetAllAsync(cancellationToken);
+
+    /// <summary>
+    /// Create new account.
+    /// </summary>
+    /// <param name="account">Account details.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(Account), StatusCodes.Status201Created)]
+    public async Task<IActionResult> CreateAccount([FromBody] CreateAccountModel account,
+        CancellationToken cancellationToken)
+    {
+        var entity = await _accountsService.CreateAsync(account, cancellationToken);
+
+        return CreatedAtAction(nameof(GetByExchangeId),
+            new Dictionary<string, object> {{"exchange-id", entity.Exchange.Id}},
+            entity);
+    }
+
+    /// <summary>
+    /// Update exchange account information.
+    /// </summary>
+    /// <param name="exchangeId">Exchange identifier.</param>
+    /// <param name="account">Account details.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("/exchanges/{exchange-id}/[controller]")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    public Task UpdateAccount(
+        [FromRoute(Name = "exchange-id")] long exchangeId,
+        [FromBody] UpdateAccountModel account,
+        CancellationToken cancellationToken) =>
+        _accountsService.UpdateAccountAsync(exchangeId, account, cancellationToken);
+
+    /// <summary>
+    /// Update exchange account information.
+    /// </summary>
+    /// <param name="exchangeId">Exchange identifier.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpDelete("/exchanges/{exchange-id}/[controller]")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    public Task DeleteAccount(
+        [FromRoute(Name = "exchange-id")] long exchangeId,
+        CancellationToken cancellationToken) =>
+        _accountsService.DeleteAccountAsync(exchangeId, cancellationToken);
 }

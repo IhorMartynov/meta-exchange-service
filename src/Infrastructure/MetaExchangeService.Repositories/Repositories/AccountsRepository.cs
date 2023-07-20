@@ -19,7 +19,7 @@ internal sealed class AccountsRepository : IAccountsRepository
     public async Task<Account?> GetByExchangeAsync(long exchangeId, CancellationToken cancellationToken)
     {
         _ = await _context.Exchanges.FirstOrDefaultAsync(x => x.Id == exchangeId, cancellationToken)
-                             ?? throw new EntityNotFoundException(nameof(ExchangeEntity), exchangeId);
+            ?? throw new EntityNotFoundException(nameof(ExchangeEntity), exchangeId);
 
         var entity = await _context.Accounts
             .Include(x => x.Exchange)
@@ -36,5 +36,61 @@ internal sealed class AccountsRepository : IAccountsRepository
             .ToArrayAsync(cancellationToken);
 
         return entity.Select(x => x.Adapt<Account>());
+    }
+
+    /// <inheritdoc />
+    public async Task<Account> CreateAsync(CreateAccountModel account, CancellationToken cancellationToken)
+    {
+        var exchangeEntity = new ExchangeEntity {Name = account.ExchangeName};
+        await _context.Exchanges.AddAsync(exchangeEntity, cancellationToken);
+
+        var accountEntity = new AccountEntity
+        {
+            Exchange = exchangeEntity,
+            BtcAmount = account.BtcAmount,
+            EurAmount = account.EurAmount
+        };
+        await _context.Accounts.AddAsync(accountEntity, cancellationToken);
+
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return accountEntity.Adapt<Account>();
+    }
+
+    /// <inheritdoc />
+    public async Task UpdateAccountAsync(long exchangeId, UpdateAccountModel account, CancellationToken cancellationToken)
+    {
+        _ = await _context.Exchanges.FirstOrDefaultAsync(x => x.Id == exchangeId, cancellationToken)
+            ?? throw new EntityNotFoundException(nameof(ExchangeEntity), exchangeId);
+
+        var entity = await _context.Accounts
+                         .FirstOrDefaultAsync(x => x.ExchangeId == exchangeId, cancellationToken)
+                     ?? throw new EntityNotFoundException(nameof(AccountEntity), exchangeId);
+
+        entity.BtcAmount = account.BtcAmount ?? entity.BtcAmount;
+        entity.EurAmount = account.EurAmount ?? entity.EurAmount;
+
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task DeleteAccountAsync(long exchangeId, CancellationToken cancellationToken)
+    {
+        var exchangeEntity = await _context.Exchanges.FirstOrDefaultAsync(x => x.Id == exchangeId, cancellationToken)
+            ?? throw new EntityNotFoundException(nameof(ExchangeEntity), exchangeId);
+
+        var accountEntity = await _context.Accounts
+                         .FirstOrDefaultAsync(x => x.ExchangeId == exchangeId, cancellationToken)
+                     ?? throw new EntityNotFoundException(nameof(AccountEntity), exchangeId);
+
+        await _context.Orders
+            .Where(x => x.ExchangeId == exchangeId)
+            .ExecuteDeleteAsync(cancellationToken);
+
+        _context.Accounts.Remove(accountEntity);
+
+        _context.Exchanges.Remove(exchangeEntity);
+
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
