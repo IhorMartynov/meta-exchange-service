@@ -109,7 +109,7 @@ public sealed class OrdersController : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("buy-execution-plan")]
-    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status200OK)]
     public Task<IEnumerable<ExecutionPlanItem>> GetBestBuyExecutionPlan(
         [FromQuery, Required] decimal amount,
         CancellationToken cancellationToken) =>
@@ -122,7 +122,7 @@ public sealed class OrdersController : ControllerBase
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("sell-execution-plan")]
-    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IEnumerable<ExecutionPlanItem>), StatusCodes.Status200OK)]
     public Task<IEnumerable<ExecutionPlanItem>> GetBestSellExecutionPlan(
         [FromQuery, Required] decimal amount,
         CancellationToken cancellationToken) =>
