@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MetaExchangeService.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "btc-amount=2 operation-type=buy"
+    }
+  }
+}
