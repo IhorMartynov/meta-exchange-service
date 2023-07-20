@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaExchangeService.Reposit
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{11E9743A-7283-45E0-90F3-368D1F46CD31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaExchangeService.Application.Tests", "..\Tests\MetaExchangeService.Application.Tests\MetaExchangeService.Application.Tests.csproj", "{4F46D635-4D6C-4E70-A4A1-952387609474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaExchangeService.Application.Tests", "Tests\MetaExchangeService.Application.Tests\MetaExchangeService.Application.Tests.csproj", "{917A887D-B572-4100-A5FE-78AD1AE3E3F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +63,10 @@ Global
 		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11E9743A-7283-45E0-90F3-368D1F46CD31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F46D635-4D6C-4E70-A4A1-952387609474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F46D635-4D6C-4E70-A4A1-952387609474}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F46D635-4D6C-4E70-A4A1-952387609474}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F46D635-4D6C-4E70-A4A1-952387609474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917A887D-B572-4100-A5FE-78AD1AE3E3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917A887D-B572-4100-A5FE-78AD1AE3E3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917A887D-B572-4100-A5FE-78AD1AE3E3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917A887D-B572-4100-A5FE-78AD1AE3E3F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,7 +78,7 @@ Global
 		{2E2C20E3-B7B6-4566-BFD2-52A199140FC6} = {C15ACC53-75BE-415A-A05E-0FE9A1FCA576}
 		{0D3B0EAE-709A-4183-A66D-1864517D4217} = {C001E17D-961E-4C69-BFC0-296023D364BE}
 		{AAAF11D0-AFB6-4905-88FF-592F408C8648} = {C001E17D-961E-4C69-BFC0-296023D364BE}
-		{4F46D635-4D6C-4E70-A4A1-952387609474} = {FB139E61-D3E9-4C22-B31D-4370DC5D1D73}
+		{917A887D-B572-4100-A5FE-78AD1AE3E3F9} = {FB139E61-D3E9-4C22-B31D-4370DC5D1D73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11F99CC2-3C55-42AD-B2D5-5F2971E18AC4}

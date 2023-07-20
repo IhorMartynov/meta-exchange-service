@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\MetaExchangeService.Application\MetaExchangeService.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MetaExchangeService.Repositories\MetaExchangeService.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

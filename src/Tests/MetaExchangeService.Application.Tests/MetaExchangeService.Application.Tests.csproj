@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Application\MetaExchangeService.Application\MetaExchangeService.Application.csproj" />
+    <ProjectReference Include="..\..\Application\MetaExchangeService.Application\MetaExchangeService.Application.csproj" />
   </ItemGroup>
 
 </Project>

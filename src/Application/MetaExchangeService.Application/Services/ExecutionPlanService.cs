@@ -34,7 +34,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
             var ordersPage = (await _ordersRepository.GetAskOrdersSortedByPriceAscendingAsync(page, PageSize, cancellationToken))
                 .ToArray();
 
-            if (!ordersPage.Any()) return result;
+            if (ordersPage.Length <= 0) return result;
 
             foreach (var order in ordersPage)
             {
@@ -73,7 +73,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
             var ordersPage = (await _ordersRepository.GetBidOrdersSortedByPriceDescendingAsync(page, PageSize, cancellationToken))
                 .ToArray();
 
-            if (!ordersPage.Any()) return result;
+            if (ordersPage.Length <= 0) return result;
 
             foreach (var order in ordersPage)
             {
