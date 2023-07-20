@@ -1,6 +1,8 @@
-﻿using MetaExchangeService.Application.Services;
+﻿using System.Runtime.CompilerServices;
+using MetaExchangeService.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
+[assembly:InternalsVisibleTo("MetaExchangeService.Application.Tests")]
 namespace MetaExchangeService.Application;
 
 public static class ServiceCollectionExtensions

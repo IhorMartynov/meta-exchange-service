@@ -23,7 +23,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
         if (btcAmount <= 0) return Enumerable.Empty<ExecutionPlanItem>();
 
         var accounts = (await _accountsRepository.GetAllAsync(cancellationToken))
-            .ToDictionary(x => x.Id, x => x.EurAmount);
+            .ToDictionary(x => x.Exchange.Id, x => x.EurAmount);
 
         var btcAmountLeft = btcAmount;
         var result = new List<ExecutionPlanItem>();
@@ -62,7 +62,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
         if (btcAmount <= 0) return Enumerable.Empty<ExecutionPlanItem>();
 
         var accounts = (await _accountsRepository.GetAllAsync(cancellationToken))
-            .ToDictionary(x => x.Id, x => x.BtcAmount);
+            .ToDictionary(x => x.Exchange.Id, x => x.BtcAmount);
 
         var btcAmountLeft = btcAmount;
         var result = new List<ExecutionPlanItem>();
