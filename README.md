@@ -19,3 +19,39 @@ Implement a Web service (Kestrel, .NET Core API), and expose the implemented fun
 
 - Write some tests, on relatively simple input data (e.g., order books with only a few bids and asks), to test your solution on typical and edge cases.
 - Deploy your Web service locally with Docker.
+
+## Solution
+
+The solution follows the Clean Architecture pattern and consists of 4 layers:
+ - Domain
+	 - MetaExchangeService.Domain
+ - Infrastructure
+	 - MetaExchangeService.Repositories
+	 - MetaExchangeService.Repositories.Contracts
+ - Application
+	 - MetaExchangeService.Application
+ - UI
+	 - MetaExchangeService.Console
+	 - MetaExchangeService.WebApi
+
+It uses an MS SQL Server to store order books and exchange accounts. The database contains 3 tables:
+ - Exchanges
+ - Accounts
+ - Orders
+
+## Running solution
+
+### Web API project
+
+The solution contains the docker-compose.yml file to help to run it locally. To start the project you can use Visual Studio or run
+`
+docker compose up
+`
+command from the src folder. And then navigate to the [local swagger page](https://localhost:52708/swagger/index.html).
+
+### Console application project
+
+To run the console application use the following command:
+`
+MetaExchangeService.Console.exe btc-amount=<amount> operation-type=<buy or sell>
+`
