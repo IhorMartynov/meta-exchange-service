@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MetaExchangeService.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
@@ -39,6 +40,7 @@ public sealed class ErrorsController : ControllerBase
         return error switch
         {
             ArgumentOutOfRangeException argumentOutOfRangeException => BadRequest(argumentOutOfRangeException.Message),
+            ValidationException validationException => BadRequest(validationException.Message),
             EntityNotFoundException notFoundException => NotFound(notFoundException.Message),
             _ => Problem(title: error?.Message)
         };

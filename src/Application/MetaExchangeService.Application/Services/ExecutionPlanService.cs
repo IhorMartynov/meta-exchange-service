@@ -23,7 +23,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
         if (btcAmount <= 0) return Enumerable.Empty<ExecutionPlanItem>();
 
         var accounts = (await _accountsRepository.GetAllAsync(cancellationToken))
-            .ToDictionary(x => x.Exchange.Id, x => x.EurAmount);
+            .ToDictionary(x => x.Exchange!.Id, x => x.EurAmount);
 
         var btcAmountLeft = btcAmount;
         var result = new List<ExecutionPlanItem>();
@@ -38,7 +38,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
 
             foreach (var order in ordersPage)
             {
-                if (accounts[order.Exchange.Id] <= 0) continue;
+                if (accounts[order.Exchange!.Id] <= 0) continue;
                 if (btcAmountLeft <= 0) return result;
 
                 var btcCanBuy = accounts[order.Exchange.Id] / order.Price;
@@ -62,7 +62,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
         if (btcAmount <= 0) return Enumerable.Empty<ExecutionPlanItem>();
 
         var accounts = (await _accountsRepository.GetAllAsync(cancellationToken))
-            .ToDictionary(x => x.Exchange.Id, x => x.BtcAmount);
+            .ToDictionary(x => x.Exchange!.Id, x => x.BtcAmount);
 
         var btcAmountLeft = btcAmount;
         var result = new List<ExecutionPlanItem>();
@@ -77,7 +77,7 @@ internal sealed class ExecutionPlanService : IExecutionPlanService
 
             foreach (var order in ordersPage)
             {
-                if (accounts[order.Exchange.Id] <= 0) continue;
+                if (accounts[order.Exchange!.Id] <= 0) continue;
                 if (btcAmountLeft <= 0) return result;
 
                 var btcCanSell = accounts[order.Exchange.Id];

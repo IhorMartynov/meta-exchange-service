@@ -13,7 +13,7 @@ public sealed class OrderEntity
     public long Id { get; set; }
     public long ExchangeId { get; set; }
     [ForeignKey(nameof(ExchangeId))]
-    public ExchangeEntity Exchange { get; set; }
+    public ExchangeEntity? Exchange { get; set; }
     public DateTime Time { get; set; }
     public OrderType Type { get; set; }
     public decimal Amount { get; set; }

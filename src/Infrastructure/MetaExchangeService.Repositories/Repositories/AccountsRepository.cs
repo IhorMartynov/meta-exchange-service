@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using System.ComponentModel.DataAnnotations;
+using Mapster;
 using MetaExchangeService.Domain.Exceptions;
 using MetaExchangeService.Domain.Models;
 using MetaExchangeService.Repositories.Contexts;
@@ -41,6 +42,9 @@ internal sealed class AccountsRepository : IAccountsRepository
     /// <inheritdoc />
     public async Task<Account> CreateAsync(CreateAccountModel account, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrEmpty(account.ExchangeName))
+            throw new ValidationException("The name of an exchange cannot be empty.");
+
         var exchangeEntity = new ExchangeEntity {Name = account.ExchangeName};
         await _context.Exchanges.AddAsync(exchangeEntity, cancellationToken);
 

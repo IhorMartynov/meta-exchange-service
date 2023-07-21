@@ -58,7 +58,7 @@ public sealed class AccountsController : ControllerBase
         var entity = await _accountsService.CreateAsync(account, cancellationToken);
 
         return CreatedAtAction(nameof(GetByExchangeId),
-            new Dictionary<string, object> {{"exchange-id", entity.Exchange.Id}},
+            new Dictionary<string, object> {{"exchange-id", entity.Exchange!.Id}},
             entity);
     }
 
