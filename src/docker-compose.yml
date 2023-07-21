@@ -3,6 +3,8 @@ version: '3.4'
 services:
   metaexchangeservice.webapi:
     image: ${DOCKER_REGISTRY-}metaexchangeservicewebapi
+    ports:
+     - "52708:443"
     build:
       context: .
       dockerfile: UI/MetaExchangeService.WebApi/Dockerfile
