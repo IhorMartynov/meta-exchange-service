@@ -52,6 +52,7 @@ command from the src folder. And then navigate to the [local swagger page](https
 ### Console application project
 
 To run the console application use the following command:
+
 `
 MetaExchangeService.Console.exe btc-amount=<amount> operation-type=<buy or sell>
 `
