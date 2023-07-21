@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations;
 using MetaExchangeService.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace MetaExchangeService.WebApi.Controllers;
 
@@ -39,10 +39,14 @@ public sealed class ErrorsController : ControllerBase
 
         return error switch
         {
-            ArgumentOutOfRangeException argumentOutOfRangeException => BadRequest(argumentOutOfRangeException.Message),
-            ValidationException validationException => BadRequest(validationException.Message),
-            EntityNotFoundException notFoundException => NotFound(notFoundException.Message),
-            _ => Problem(title: error?.Message)
+            ArgumentOutOfRangeException argumentOutOfRangeException =>
+                Problem(title: argumentOutOfRangeException.Message, statusCode: StatusCodes.Status400BadRequest),
+            ValidationException validationException =>
+                Problem(title: validationException.Message, statusCode: StatusCodes.Status400BadRequest),
+            EntityNotFoundException notFoundException =>
+                Problem(title: notFoundException.Message,
+                statusCode: StatusCodes.Status404NotFound),
+            _ => Problem(title: error?.Message, statusCode: StatusCodes.Status500InternalServerError)
         };
     }
 }

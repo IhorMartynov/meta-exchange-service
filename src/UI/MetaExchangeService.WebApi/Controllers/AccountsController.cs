@@ -28,7 +28,7 @@ public sealed class AccountsController : ControllerBase
     /// <returns></returns>
     [HttpGet("/exchanges/{exchange-id}/[controller]")]
     [ProducesResponseType(typeof(Account), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public Task<Account?> GetByExchangeId(
         [FromRoute(Name = "exchange-id")] long exchangeId,
         CancellationToken cancellationToken) =>
@@ -71,7 +71,7 @@ public sealed class AccountsController : ControllerBase
     /// <returns></returns>
     [HttpPatch("/exchanges/{exchange-id}/[controller]")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public Task UpdateAccount(
         [FromRoute(Name = "exchange-id")] long exchangeId,
         [FromBody] UpdateAccountModel account,
@@ -86,7 +86,7 @@ public sealed class AccountsController : ControllerBase
     /// <returns></returns>
     [HttpDelete("/exchanges/{exchange-id}/[controller]")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public Task DeleteAccount(
         [FromRoute(Name = "exchange-id")] long exchangeId,
         CancellationToken cancellationToken) =>

@@ -46,7 +46,7 @@ public sealed class OrdersController : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public Task<IEnumerable<Order>> GetAll([FromQuery, Required] int page = 1,
         [FromQuery, Required] int pageSize = 10,
         CancellationToken cancellationToken = default) =>
@@ -80,6 +80,7 @@ public sealed class OrdersController : ControllerBase
     /// <returns></returns>
     [HttpPost("/exchanges/{exchange-id}/[controller]/bulk")]
     [ProducesResponseType(typeof(IEnumerable<Order>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateOrders(
         [FromRoute(Name = "exchange-id")] long exchangeId,
         [FromBody] CreateOrderModel[] orders,
@@ -98,7 +99,7 @@ public sealed class OrdersController : ControllerBase
     /// <returns></returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public Task DeleteOrder([FromRoute] long id, CancellationToken cancellationToken) =>
         _ordersService.DeleteAsync(id, cancellationToken);
 
