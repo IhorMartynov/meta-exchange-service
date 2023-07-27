@@ -1,7 +1,10 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using MetaExchangeService.Application;
 using MetaExchangeService.Repositories;
+[assembly:InternalsVisibleTo("MetaExchangeService.WebApi.IntegrationTests")]
+
 
 var builder = WebApplication.CreateBuilder(args);
 
